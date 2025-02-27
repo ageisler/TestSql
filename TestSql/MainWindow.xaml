@@ -1,0 +1,38 @@
+﻿<Window x:Class="TestSql.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Stadtbibliothek Bibliopolis" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Suchfeld -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+            <TextBox Name="txtSearch" Width="200" Margin="0,0,10,0" 
+                     VerticalAlignment="Center" Text="Titel, Autor, ISBN"/>
+            <Button Content="Suchen" Width="80" Click="SearchButton_Click"/>
+        </StackPanel>
+
+        <!-- DataGrid zur Anzeige der Bücher -->
+        <DataGrid Name="dgBooks" Grid.Row="1" AutoGenerateColumns="False" 
+                  CanUserAddRows="False" Margin="0,0,0,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Title}" Header="Titel" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Author}" Header="Autor" Width="*"/>
+                <DataGridTextColumn Binding="{Binding ISBN}" Header="ISBN" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Genre}" Header="Genre" Width="*"/>
+                <DataGridTextColumn Binding="{Binding PublicationDate, StringFormat=d}" Header="Veröffentlicht am" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Buttons für weitere Aktionen -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+            <Button Content="Buch hinzufügen" Width="120" Margin="5" Click="AddButton_Click"/>
+            <Button Content="Buch bearbeiten" Width="120" Margin="5" Click="EditButton_Click"/>
+            <Button Content="Buch löschen" Width="120" Margin="5" Click="DeleteButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
