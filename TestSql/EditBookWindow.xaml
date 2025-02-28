@@ -1,0 +1,15 @@
+﻿<Window x:Class="TestSql.EditBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Buch bearbeiten" Height="300" Width="400">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBox x:Name="txtTitle" Text="Titel" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtAuthor" Text="Autor" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtISBN" Text="ISBN" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtGenre" Text="Genre" Margin="0,0,0,10"/>
+            <DatePicker x:Name="dpPublicationDate" Margin="0,0,0,10"/>
+            <Button Content="Speichern" Click="SaveButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -7,12 +7,10 @@ namespace TestSql
     {
         private BookRepository repository;
 
-        // ...
-
         public MainWindow()
         {
             InitializeComponent();
-            Batteries_V2.Init(); // Ändern Sie diese Zeile
+            Batteries_V2.Init();
             repository = new BookRepository();
             LoadBooks();
         }
@@ -22,7 +20,6 @@ namespace TestSql
             List<Book> books = repository.GetBooks();
             if (!string.IsNullOrWhiteSpace(filter))
             {
-                // Filtert nach Titel, Autor oder ISBN (unabhängig von Groß-/Kleinschreibung)
                 books = books.Where(b =>
                     b.Title.ToLower().Contains(filter.ToLower()) ||
                     b.Author.ToLower().Contains(filter.ToLower()) ||
@@ -51,13 +48,15 @@ namespace TestSql
         {
             if (dgBooks.SelectedItem is Book selectedBook)
             {
-                // Öffne ein Bearbeitungsfenster, um die Daten des Buchs zu aktualisieren.
-                // Nach dem Bearbeiten:
-                // repository.UpdateBook(editedBook);
-                // LoadBooks();
-                MessageBox.Show("Buch bearbeiten-Funktion wird hier implementiert.");
+                var editBookWindow = new EditBookWindow(selectedBook);
+                if (editBookWindow.ShowDialog() == true)
+                {
+                    repository.UpdateBook(editBookWindow.EditedBook);
+                    LoadBooks();
+                }
             }
         }
+
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
